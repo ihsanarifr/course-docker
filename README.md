@@ -13,5 +13,5 @@
 ## API
 - create register user
 - create user login
-- get question
-- calculate result
+- get exercise question
+- calculate answer
