@@ -2,9 +2,9 @@
 
 ## Package
 - Database
-    - gorm
-- Router framework
-    - gin gonic
+    - [gorm](https://gorm.io/)
+- Routing framework
+    - [gin gonic](https://gin-gonic.com/)
 
 ## Dependencies
 - mysql
