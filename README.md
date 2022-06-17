@@ -15,3 +15,6 @@
 - create user login
 - get exercise question
 - calculate answer
+
+## DB Schema
+![db schema](./db_diagram.png)
