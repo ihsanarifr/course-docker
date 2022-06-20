@@ -1,6 +1,13 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"course/internal/database"
+	"course/internal/exercise"
+	"course/internal/middleware"
+	"course/internal/user"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	route := gin.Default()
@@ -9,5 +16,16 @@ func main() {
 			"message": "hello world",
 		})
 	})
-	route.Run(":1234")
+
+	db := database.NewDatabaseConn()
+	exerciseService := exercise.NewExerciseService(db)
+	userService := user.NewUserService(db)
+	// exercises
+	route.GET("/exercises/:id", middleware.Authentication(userService), exerciseService.GetExercise)
+	route.GET("/exercises/:id/score", middleware.Authentication(userService), exerciseService.GetUserScore)
+
+	// user
+	route.POST("/register", userService.Register)
+	route.POST("/login", userService.Login)
+	route.Run(":8000")
 }
