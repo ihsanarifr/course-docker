@@ -1,0 +1,14 @@
+# set base image for builder STAGE
+FROM golang:1.18-alpine
+# set working directory
+WORKDIR /go/src/rest-api
+# copy golang module dependencies
+COPY go.mod go.mod
+COPY go.sum go.sum
+# download all golang module dependencies
+RUN go mod download
+# Copy semua file
+COPY . .
+
+# run: go run cmd/api/main.go
+CMD ["go", "run", "cmd/api/main.go"]

@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  api:
+    # image: rest-api:local
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: course_rest_api
+    restart: unless-stopped
+    environment:
+      - MYSQL_DSN=root:secret@tcp(db:3306)/course2?parseTime=True
+    ports:
+      - "3000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: mysql/mysql-server:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: course_db
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=course2
+    networks:
+      - course_network
+
+networks:
+  course_network:
+    external: true
+    name: course_network

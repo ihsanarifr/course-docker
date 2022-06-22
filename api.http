@@ -1,0 +1,23 @@
+POST http://localhost:3000/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "nizomsidiq",
+    "email": "nizom@example.com",
+    "password": "123123"
+}
+
+
+###
+
+POST http://localhost:8000/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "nizom@example.com",
+    "password": "123123"
+}
+
+###
+GET http://localhost:3000/exercises/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTU5OTE5MTUsImlzcyI6ImVkc3BlcnQiLCJ1c2VyX2lkIjo0fQ.N6DPCZfGALI5ddIDIPbhn9D6BkC7ZFj3v3MVf6HGeaE
